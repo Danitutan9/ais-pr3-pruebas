@@ -5,9 +5,9 @@ on:
     - cron: '0 2 * * *'
 
 jobs:
-  workflow4(nightly):
+  workflow4:
     runs-on: ubuntu-latest
-      steps:
+    steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
