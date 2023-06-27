@@ -35,9 +35,6 @@ jobs:
       #    docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p "${{ secrets.DOCKERTOKENPRUEBA }}"
       #    docker push danitutan9/books-reviewer:${VERSION}
 
-      - name: Generar version
-        run: export VERSION=${{ github.sha }}
-
       - name: Generar imagen docker
         run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/ais-d.garciar.2020-j.lozoya.2020-2023:dev-${VERSION}
 
