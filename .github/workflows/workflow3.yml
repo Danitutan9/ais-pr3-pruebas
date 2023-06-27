@@ -28,13 +28,6 @@ jobs:
       - name: Ejecutar pruebas selenium
         run: mvn test -Dtest=SeleniumTest
 
-      #- name: Build and tag Docker image
-      #  run: |
-      #    export VERSION=${{ github.sha }}
-      #    docker build -t danitutan9/books-reviewer:${VERSION} .
-      #    docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p "${{ secrets.DOCKERTOKENPRUEBA }}"
-      #    docker push danitutan9/books-reviewer:${VERSION}
-
       - name: Generar imagen docker
         run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:dev-${VERSION}
 
