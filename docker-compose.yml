@@ -1,5 +1,5 @@
 services:
   books-reviewer:
-    image: danitutan9/books-reviewer:0.2.0
+    image: danitutan9/books-reviewer:${VERSION}
     ports:
       - 8080:8080
