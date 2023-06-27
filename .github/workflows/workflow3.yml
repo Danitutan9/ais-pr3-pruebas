@@ -8,7 +8,7 @@ on:
 jobs:
   workflow3:
     runs-on: ubuntu-latest
-      steps:
+    steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -51,7 +51,7 @@ jobs:
       - name: Subir imagen Docker
         run: docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/ais-d.garciar.2020-j.lozoya.2020-2023:dev-${{ env.DATE }}
 
-      -name: Instalar Okteto CLI
+      - name: Instalar Okteto CLI
         run: curl https://get.okteto.com -sSfL | sh
 
       - name: Login en Okteto
