@@ -50,9 +50,6 @@ jobs:
       - name: Login en Okteto
         run: okteto context use https://cloud.okteto.com --token ${{ secrets.OKTETOTOKENPRUEBA }}
 
-      - name: Copiar archivo okteto.yml
-        run: cp okteto.yml .okteto/okteto.yml
-
       - name: Deploy to Okteto
         run: |
           export VERSION=${{ github.sha }}

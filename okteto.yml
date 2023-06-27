@@ -1,6 +1,0 @@
-name: books-reviewer-tbd
-image: docker.io/${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:dev-${VERSION}
-workdir: /app
-command: ["java", "-jar", "books-reviewer.jar"]
-forward:
-  - 8080:8080
