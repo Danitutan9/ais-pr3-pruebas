@@ -54,3 +54,6 @@ jobs:
         run: |
           export VERSION=${{ github.sha }}
           okteto deploy --wait
+
+      - name: Ejecutar sanity test
+        run: mvn test -Dtest=SanityTest
