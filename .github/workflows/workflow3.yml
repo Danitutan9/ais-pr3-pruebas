@@ -28,24 +28,14 @@ jobs:
       - name: Ejecutar pruebas selenium
         run: mvn test -Dtest=SeleniumTest
 
-      #- name: Build and tag Docker image
-      #  run: |
-      #    export VERSION=${{ github.sha }}
-      #    docker build -t danitutan9/books-reviewer:${VERSION} .
-      #    docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p "${{ secrets.DOCKERTOKENPRUEBA }}"
-      #    docker push danitutan9/books-reviewer:${VERSION}
-
-      - name: Generar version
-        run: export VERSION=${{ github.sha }}
-
       - name: Generar imagen docker
-        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/ais-d.garciar.2020-j.lozoya.2020-2023:dev-${VERSION}
+        run: mvn spring-boot:build-image -DskipTests -Dspring-boot.build-image.imageName=docker.io/${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:dev-${VERSION}
 
       - name: Login en DockerHub
         run: docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKERTOKENPRUEBA }}"
 
       - name: Subir imagen Docker
-        run: docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/ais-d.garciar.2020-j.lozoya.2020-2023:dev-${VERSION}
+        run: docker push docker.io/${{ secrets.DOCKERHUB_USERNAME }}/books-reviewer:dev-${VERSION}
 
       - name: Instalar Okteto CLI
         run: curl https://get.okteto.com -sSfL | sh
@@ -57,3 +47,6 @@ jobs:
         run: |
           export VERSION=${{ github.sha }}
           okteto deploy --wait
+
+      - name: Ejecutar sanity test
+        run: mvn test -Dtest=SanityTest
